@@ -199,8 +199,7 @@ jobs:
         uses: pnpm/action-setup@v4
 
       - name: Install dependencies
-        working-directory: login
-        run: pnpm install --frozen-lockfile
+        run: pnpm install --frozen-lockfile --filter "./packages/*..."
 
       - name: Create Release Pull Request
         uses: changesets/action@v1
