@@ -2,9 +2,9 @@ import "@/styles/globals.scss";
 import "@cimbyte/ui/css";
 
 import { BackgroundWrapper } from "@/components/background-wrapper";
+import { CimbyteBrand } from "@/components/cimbyte-brand";
 import { LanguageProvider } from "@/components/language-provider";
 import { LanguageSwitcher } from "@/components/language-switcher";
-import { Skeleton } from "@/components/skeleton";
 import { ThemeProvider } from "@/components/theme-provider";
 import ThemeSwitch from "@/components/theme-switch";
 import { LANGS, getLanguage } from "@/lib/i18n";
@@ -51,26 +51,29 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           <Tooltip.Provider>
             <Suspense
               fallback={
-                <BackgroundWrapper className="cb-auth-shell">
-                  <div className="cb-auth-wrap">
-                    <Skeleton>
-                      <div className="h-40"></div>
-                    </Skeleton>
-                    <div className="cb-auth-footer flex flex-row items-center justify-end gap-3">
-                      <ThemeSwitch />
-                    </div>
+                <BackgroundWrapper className="cimbyte-login-shell">
+                  <div className="cimbyte-login-layout">
+                    <aside className="cimbyte-login-aside">
+                      <CimbyteBrand />
+                    </aside>
+                    <main className="cimbyte-login-form">
+                      <div className="cimbyte-login-form-inner">
+                        <div className="cimbyte-login-loading" />
+                      </div>
+                    </main>
+                  </div>
+                  <div className="cimbyte-login-controls">
+                    <ThemeSwitch />
                   </div>
                 </BackgroundWrapper>
               }
             >
               <LanguageProvider>
-                <BackgroundWrapper className="cb-auth-shell">
-                  <div className="relative mx-auto w-full max-w-[1100px] px-4 py-8">
-                    <div>{children}</div>
-                    <div className="cb-auth-footer mx-auto flex max-w-[420px] flex-row items-center justify-end gap-3">
-                      <LanguageSwitcher languages={languages} />
-                      <ThemeSwitch />
-                    </div>
+                <BackgroundWrapper className="cimbyte-login-shell">
+                  {children}
+                  <div className="cimbyte-login-controls">
+                    <LanguageSwitcher languages={languages} />
+                    <ThemeSwitch />
                   </div>
                 </BackgroundWrapper>
               </LanguageProvider>

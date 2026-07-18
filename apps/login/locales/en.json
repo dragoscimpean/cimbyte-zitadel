@@ -1,7 +1,7 @@
 {
   "common": {
     "back": "Back",
-    "title": "Login with Zitadel"
+    "title": "Sign in to Cimbyte"
   },
   "accounts": {
     "title": "Accounts",
@@ -23,8 +23,8 @@
     }
   },
   "loginname": {
-    "title": "Welcome back!",
-    "description": "Enter your login details.",
+    "title": "Sign in",
+    "description": "Access your Cimbyte workspace.",
     "register": "Register new user",
     "submit": "Continue",
     "labels": {
