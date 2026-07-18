@@ -58,7 +58,9 @@ a {
   justify-content: space-between;
   padding: 48px 56px;
   border-right: 1px solid var(--cb-line);
-  background: var(--cb-paper);
+  background:
+    radial-gradient(circle at 1px 1px, var(--cb-ink-15) 1px, transparent 0) 0 0 / 22px 22px,
+    var(--cb-paper);
 }
 
 .cimbyte-login-brand {
