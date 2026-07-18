@@ -18,14 +18,14 @@ export function DynamicTheme({ branding, children }: { children: ReactNode; bran
           <CimbyteBrand />
 
           <div className="cimbyte-login-story">
-            <div className="cimbyte-login-eyebrow">Cimbyte Identity</div>
-            <h2 className="cimbyte-login-headline">One account for every Cimbyte app.</h2>
-            <p className="cimbyte-login-lead">
+            <div className="cb-eyebrow cb-eyebrow-mono cimbyte-login-eyebrow">Cimbyte Identity</div>
+            <h2 className="cb-heading cimbyte-login-headline">One account for every Cimbyte app.</h2>
+            <p className="cb-page-head-copy cimbyte-login-lead">
               Sign in securely with Google or your Cimbyte credentials, then continue straight to the app you opened.
             </p>
           </div>
 
-          <div className="cimbyte-login-stats" aria-label="Supported platforms">
+          <div className="cb-meta cb-meta-sm cimbyte-login-stats" aria-label="Supported platforms">
             <div>
               <b>1</b> account
             </div>
@@ -40,6 +40,9 @@ export function DynamicTheme({ branding, children }: { children: ReactNode; bran
 
         <main className="cimbyte-login-form">
           <div className="cimbyte-login-form-inner">
+            <div className="cimbyte-login-mobile-brand">
+              <CimbyteBrand />
+            </div>
             {hasMultipleChildren ? (
               <>
                 <div className="cimbyte-login-form-heading">{titleContent}</div>

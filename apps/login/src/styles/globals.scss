@@ -22,13 +22,8 @@ html {
 
 body.cb {
   --cb-sans: var(--cimbyte-font-sans), ui-sans-serif, system-ui, sans-serif;
-  --cb-accent: oklch(0.58 0.17 252);
-  --cb-accent-hover: oklch(0.64 0.17 252);
-  --cb-accent-soft: oklch(0.58 0.17 252 / 0.18);
-  --cb-accent-content: #fff;
   height: 100vh;
   overflow: hidden;
-  letter-spacing: -0.005em;
 }
 
 a {
@@ -70,36 +65,11 @@ a {
   display: flex;
   align-items: center;
   gap: 10px;
-  color: var(--cb-ink);
-}
-
-.cimbyte-login-logo {
-  display: flex;
-  width: 30px;
-  height: 30px;
-  flex: none;
-  align-items: center;
-  justify-content: center;
-  border-radius: 8px;
-  background: var(--cb-accent);
-}
-
-.cimbyte-login-logo .cb-brand-mark {
-  width: 17px;
-  height: 17px;
-  gap: 2.5px;
-}
-
-.cimbyte-login-logo .cb-brand-mark span,
-.cimbyte-login-logo .cb-brand-mark span:nth-child(2) {
-  height: 2px;
-  background: #fff;
 }
 
 .cimbyte-login-brand-name {
   font-size: 18px;
-  font-weight: 600;
-  letter-spacing: -0.02em;
+  font-weight: 700;
 }
 
 .cimbyte-login-story {
@@ -108,28 +78,17 @@ a {
 
 .cimbyte-login-eyebrow {
   margin-bottom: 18px;
-  color: var(--cb-accent);
-  font-family: var(--cb-mono);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
 }
 
 .cimbyte-login-headline {
   max-width: 400px;
   margin: 0 0 18px;
-  color: var(--cb-ink);
   font-size: clamp(30px, 3vw, 42px);
-  font-weight: 600;
-  line-height: 1.12;
-  letter-spacing: -0.035em;
 }
 
 .cimbyte-login-lead {
   max-width: 400px;
   margin: 0;
-  color: var(--cb-ink-60);
   font-size: 14px;
   line-height: 1.6;
 }
@@ -137,9 +96,6 @@ a {
 .cimbyte-login-stats {
   display: flex;
   gap: 28px;
-  color: var(--cb-ink-40);
-  font-family: var(--cb-mono);
-  font-size: 11px;
 }
 
 .cimbyte-login-stats b {
@@ -164,6 +120,10 @@ a {
   animation: cimbyte_login_enter 0.3s ease;
 }
 
+.cimbyte-login-mobile-brand {
+  display: none;
+}
+
 .cimbyte-login-form-heading {
   margin-bottom: 26px;
 }
@@ -176,19 +136,12 @@ a {
 .cimbyte-login-form-heading h1,
 .cimbyte-login-form-heading .cb-auth-title {
   margin: 0;
-  color: var(--cb-ink);
-  font-size: 22px;
-  font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
   text-align: left;
 }
 
 .cimbyte-login-form-heading p,
 .cimbyte-login-form-heading .cb-auth-copy {
   margin: 6px 0 0;
-  color: var(--cb-ink-40);
-  font-size: 13px;
   text-align: left;
 }
 
@@ -221,50 +174,6 @@ a {
   height: 1px;
   background: var(--cb-line);
   content: "";
-}
-
-.cimbyte-login-form .cb-label {
-  margin-bottom: 7px;
-  color: var(--cb-ink-40);
-  font-family: var(--cb-mono);
-  font-size: 11px;
-  letter-spacing: 0.06em;
-}
-
-.cimbyte-login-form .cb-input {
-  padding: 10px 12px;
-  border-color: var(--cb-line);
-  border-radius: 8px;
-  background: var(--cb-paper);
-}
-
-.cimbyte-login-form .cb-input:focus {
-  border-color: var(--cb-accent);
-}
-
-.cimbyte-login-shell .cb-btn {
-  border-radius: 8px;
-}
-
-.cimbyte-login-shell .cb-btn-primary {
-  border-color: var(--cb-accent);
-  background: var(--cb-accent);
-  color: var(--cb-accent-content);
-}
-
-.cimbyte-login-shell .cb-btn-primary:hover {
-  border-color: var(--cb-accent-hover);
-  background: var(--cb-accent-hover);
-  color: var(--cb-accent-content);
-}
-
-.cimbyte-login-form .cb-btn-block {
-  padding-block: 11px;
-}
-
-.cimbyte-login-form .cb-list-row,
-.cimbyte-login-form .cb-card {
-  background: var(--cb-paper);
 }
 
 .cimbyte-login-controls {
@@ -306,47 +215,32 @@ a {
 @media (max-width: 800px) {
   body.cb,
   .cimbyte-login-shell {
-    height: auto;
+    min-height: 100%;
     overflow: auto;
   }
 
   .cimbyte-login-layout {
     min-height: 100dvh;
-    flex-direction: column;
   }
 
   .cimbyte-login-aside {
-    min-height: 260px;
-    flex: none;
-    gap: 48px;
-    padding: 24px;
-    border-right: 0;
-    border-bottom: 1px solid var(--cb-line);
-  }
-
-  .cimbyte-login-headline {
-    max-width: 520px;
-    font-size: 28px;
-  }
-
-  .cimbyte-login-lead {
-    max-width: 560px;
-  }
-
-  .cimbyte-login-stats {
     display: none;
   }
 
   .cimbyte-login-form {
-    min-height: calc(100dvh - 260px);
-    flex: none;
-    align-items: flex-start;
-    padding: 40px 24px 96px;
+    min-height: 100dvh;
+    align-items: center;
+    padding: 48px 24px 96px;
   }
 
   .cimbyte-login-form-inner {
-    max-width: 440px;
+    max-width: 420px;
     margin: 0 auto;
+  }
+
+  .cimbyte-login-mobile-brand {
+    display: flex;
+    margin-bottom: 28px;
   }
 
   .cimbyte-login-controls {
@@ -357,23 +251,8 @@ a {
 }
 
 @media (max-width: 520px) {
-  .cimbyte-login-aside {
-    min-height: 230px;
-    gap: 34px;
-    padding: 20px;
-  }
-
-  .cimbyte-login-headline {
-    font-size: 25px;
-  }
-
-  .cimbyte-login-lead {
-    font-size: 13px;
-  }
-
   .cimbyte-login-form {
-    min-height: calc(100dvh - 230px);
-    padding: 34px 20px 88px;
+    padding: 32px 20px 88px;
   }
 
   .cimbyte-login-controls > :first-child {
