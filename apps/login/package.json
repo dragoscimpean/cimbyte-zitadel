@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@braintree/sanitize-url": "^7.1.2",
+    "@cimbyte/ui": "github:dragoscimpean/cimbyte-ui-kit#v0.3.0",
     "@connectrpc/connect": "^2.1.1",
     "@connectrpc/connect-node": "^2.1.1",
     "@headlessui/react": "^2.2.10",

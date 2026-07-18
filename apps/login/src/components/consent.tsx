@@ -46,11 +46,11 @@ export function ConsentScreen({
 
   return (
     <div className="flex w-full flex-col items-center space-y-4 pt-4">
-      <ul className="w-full list-disc space-y-2">
+      <ul className="w-full list-none space-y-2">
         {scopes?.length === 0 && (
-          <span className="border-divider-light bg-background-light-400 dark:bg-background-dark-400 flex w-full flex-row items-center rounded-md border px-4 py-2 text-sm transition-all">
+          <li className="cb-list-row cursor-default">
             <Translated i18nKey="device.scope.openid" namespace="device" />
-          </span>
+          </li>
         )}
         {scopes?.map((s) => {
           const translationKey = `device.scope.${s}`;
@@ -60,17 +60,14 @@ export function ConsentScreen({
           const resolvedDescription = description === translationKey ? "" : description;
 
           return (
-            <li
-              key={s}
-              className="border-divider-light bg-background-light-400 dark:bg-background-dark-400 flex w-full flex-row items-center rounded-md border px-4 py-2 text-sm transition-all"
-            >
+            <li key={s} className="cb-list-row cursor-default">
               <span>{resolvedDescription}</span>
             </li>
           );
         })}
       </ul>
 
-      <p className="ztdl-p text-left text-xs">
+      <p className="cb-auth-copy !mb-0 text-left text-xs">
         <Translated i18nKey="request.disclaimer" namespace="device" data={{ appName: appName }} />
       </p>
 
@@ -80,19 +77,18 @@ export function ConsentScreen({
         </div>
       )}
 
-      <div className="mt-4 flex w-full flex-row items-center">
+      <div className="cb-form-actions mt-4 w-full">
         <Button
           onClick={() => {
             denyDeviceAuth();
           }}
           variant={ButtonVariants.Secondary}
           data-testid="deny-button"
+          className="mr-auto"
         >
           {loading && <Spinner className="mr-2 h-5 w-5" />}
           <Translated i18nKey="device.request.deny" namespace="device" />
         </Button>
-        <span className="flex-grow"></span>
-
         <Link href={nextUrl}>
           <Button data-testid="submit-button" type="submit" className="self-end" variant={ButtonVariants.Primary}>
             <Translated i18nKey="device.request.submit" namespace="device" />

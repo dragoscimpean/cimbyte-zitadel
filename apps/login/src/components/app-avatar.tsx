@@ -26,8 +26,8 @@ export function AppAvatar({ appName, imageUrl, shadow }: AvatarProps) {
 
   return (
     <div
-      className={`dark:group-focus:ring-offset-blue dark:text-blue bg-primary-light-500 text-primary-light-contrast-500 hover:bg-primary-light-400 group-focus:ring-primary-light-200 dark:bg-primary-dark-300 dark:text-primary-dark-contrast-300 hover:dark:bg-primary-dark-500 dark:group-focus:ring-primary-dark-400 pointer-events-none flex h-[100px] w-[100px] cursor-default items-center justify-center rounded-full transition-colors duration-200 group-focus:ring-2 group-focus:outline-none ${
-        shadow ? "shadow" : ""
+      className={`cb-avatar pointer-events-none !h-[100px] !w-[100px] cursor-default text-3xl transition-colors duration-200 ${
+        shadow ? "shadow-[var(--cb-shadow)]" : ""
       }`}
       style={resolvedTheme === "light" ? avatarStyleLight : avatarStyleDark}
     >
@@ -36,7 +36,7 @@ export function AppAvatar({ appName, imageUrl, shadow }: AvatarProps) {
           height={48}
           width={48}
           alt="avatar"
-          className="border-divider-light dark:border-divider-dark h-full w-full rounded-full border"
+          className="h-full w-full rounded-full border border-[var(--cb-line)]"
           src={imageUrl}
         />
       ) : (

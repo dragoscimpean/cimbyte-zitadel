@@ -92,9 +92,9 @@ export function SessionItem({ session, reload, requestId }: { session: Session; 
               }
             }
           }}
-          className="group border-divider-light bg-background-light-400 dark:bg-background-dark-400 flex flex-row items-center rounded-md border px-4 py-2 transition-all hover:shadow-lg dark:hover:bg-white/10"
+          className="cb-list-row group items-center"
         >
-          <div className="pr-4">
+          <div>
             <Avatar
               size="small"
               loginName={session.factors?.user?.loginName as string}
@@ -102,17 +102,17 @@ export function SessionItem({ session, reload, requestId }: { session: Session; 
             />
           </div>
 
-          <div className="flex flex-col items-start overflow-hidden">
-            <span className="">{session.factors?.user?.displayName}</span>
-            <span className="text-xs text-ellipsis opacity-80">{session.factors?.user?.loginName}</span>
+          <div className="cb-list-main">
+            <span className="cb-list-title truncate">{session.factors?.user?.displayName}</span>
+            <span className="cb-list-copy truncate">{session.factors?.user?.loginName}</span>
             {valid ? (
-              <span className="text-xs text-ellipsis opacity-80">
+              <span className="cb-list-copy truncate">
                 <Translated i18nKey="verified" namespace="accounts" />{" "}
                 {verifiedAt && moment(timestampDate(verifiedAt)).fromNow()}
               </span>
             ) : (
               verifiedAt && (
-                <span className="text-xs text-ellipsis opacity-80">
+                <span className="cb-list-copy truncate">
                   <Translated i18nKey="expired" namespace="accounts" />{" "}
                   {session.expirationDate && moment(timestampDate(session.expirationDate)).fromNow()}
                 </span>
@@ -123,13 +123,13 @@ export function SessionItem({ session, reload, requestId }: { session: Session; 
           <span className="flex-grow"></span>
           <div className="relative flex flex-row items-center">
             {valid ? (
-              <div className="absolute right-6 mx-2 h-2 w-2 transform rounded-full bg-green-500 transition-all group-hover:right-6 sm:right-0"></div>
+              <div className="cb-dot absolute right-6 mx-2 bg-[var(--cb-success)] transition-all sm:right-0"></div>
             ) : (
-              <div className="absolute right-6 mx-2 h-2 w-2 transform rounded-full bg-red-500 transition-all group-hover:right-6 sm:right-0"></div>
+              <div className="cb-dot absolute right-6 mx-2 bg-[var(--cb-error)] transition-all sm:right-0"></div>
             )}
 
             <XCircleIcon
-              className="h-5 w-5 opacity-50 transition-all group-hover:block hover:opacity-100 sm:hidden"
+              className="h-5 w-5 text-[var(--cb-ink-50)] transition-all group-hover:block hover:text-[var(--cb-error)] sm:hidden"
               onClick={async (event: React.MouseEvent) => {
                 event.preventDefault();
                 event.stopPropagation();
@@ -143,11 +143,11 @@ export function SessionItem({ session, reload, requestId }: { session: Session; 
       {valid && session.expirationDate && (
         <Tooltip.Portal>
           <Tooltip.Content
-            className="bg-background-light-500 dark:bg-background-dark-500 z-50 rounded-md border px-3 py-2 text-xs text-black shadow-xl select-none dark:border-white/20 dark:text-white"
+            className="z-50 rounded-[var(--cb-radius)] border border-[var(--cb-line)] bg-[var(--cb-paper)] px-3 py-2 text-xs text-[var(--cb-ink)] shadow-[var(--cb-shadow-lg)] select-none"
             sideOffset={5}
           >
             Expires {moment(timestampDate(session.expirationDate)).fromNow()}
-            <Tooltip.Arrow className="fill-white dark:fill-white/20" />
+            <Tooltip.Arrow className="fill-[var(--cb-paper)]" />
           </Tooltip.Content>
         </Tooltip.Portal>
       )}

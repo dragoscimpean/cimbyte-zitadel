@@ -1,6 +1,7 @@
 "use client";
 
 import { Label, Radio, RadioGroup } from "@headlessui/react";
+import { clsx } from "clsx";
 import { Translated } from "./translated";
 
 export enum AuthenticationMethod {
@@ -21,7 +22,7 @@ export function AuthenticationMethodRadio({
     <div className="w-full">
       <div className="mx-auto w-full max-w-md">
         <RadioGroup value={selected} onChange={selectionChanged}>
-          <Label className="sr-only">Server size</Label>
+          <Label className="cb-sr-only">Server size</Label>
           <div className="flex flex-row space-x-4">
             {methods.map((method) => (
               <Radio
@@ -29,11 +30,11 @@ export function AuthenticationMethodRadio({
                 value={method}
                 data-testid={method + "-radio"}
                 className={({ focus, checked }) =>
-                  `${focus ? "ring-primary-light-500/60 ring-2 dark:ring-white/20" : ""} ${
-                    checked
-                      ? "bg-background-light-400 ring-primary-light-500 dark:bg-background-dark-400 dark:ring-primary-dark-500 ring-2"
-                      : "bg-background-light-400 dark:bg-background-dark-400"
-                  } boder-divider-light dark:border-divider-dark relative flex h-full flex-1 cursor-pointer rounded-lg border px-5 py-4 hover:shadow-lg focus:outline-none dark:hover:bg-white/10`
+                  clsx(
+                    "cb-card cb-card-compact cb-card-selectable relative flex h-full flex-1 cursor-pointer focus:outline-none",
+                    checked && "is-selected",
+                    focus && "outline-2 outline-offset-2 outline-[var(--cb-accent)]",
+                  )
                 }
               >
                 <div className="flex w-full flex-col items-center text-sm">
@@ -44,7 +45,7 @@ export function AuthenticationMethodRadio({
                       viewBox="0 0 24 24"
                       strokeWidth="1.5"
                       stroke="currentColor"
-                      className="mb-3 h-8 w-8"
+                      className="mb-3 h-8 w-8 text-[var(--cb-ink-60)]"
                     >
                       <path
                         strokeLinecap="round"
@@ -54,13 +55,17 @@ export function AuthenticationMethodRadio({
                     </svg>
                   )}
                   {method === "password" && (
-                    <svg className="mb-3 h-8 w-8 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <svg
+                      className="mb-3 h-8 w-8 fill-current text-[var(--cb-ink-60)]"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                    >
                       <title>form-textbox-password</title>
                       <path d="M17,7H22V17H17V19A1,1 0 0,0 18,20H20V22H17.5C16.95,22 16,21.55 16,21C16,21.55 15.05,22 14.5,22H12V20H14A1,1 0 0,0 15,19V5A1,1 0 0,0 14,4H12V2H14.5C15.05,2 16,2.45 16,3C16,2.45 16.95,2 17.5,2H20V4H18A1,1 0 0,0 17,5V7M2,7H13V9H4V15H13V17H2V7M20,15V9H17V15H20M8.5,12A1.5,1.5 0 0,0 7,10.5A1.5,1.5 0 0,0 5.5,12A1.5,1.5 0 0,0 7,13.5A1.5,1.5 0 0,0 8.5,12M13,10.89C12.39,10.33 11.44,10.38 10.88,11C10.32,11.6 10.37,12.55 11,13.11C11.55,13.63 12.43,13.63 13,13.11V10.89Z" />
                     </svg>
                   )}
 
-                  <Label>
+                  <Label className="cb-card-title">
                     {method === AuthenticationMethod.Passkey && (
                       <Translated i18nKey="methods.passkey" namespace="register" />
                     )}

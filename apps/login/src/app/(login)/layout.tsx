@@ -1,4 +1,5 @@
 import "@/styles/globals.scss";
+import "@cimbyte/ui/css";
 
 import { BackgroundWrapper } from "@/components/background-wrapper";
 import { LanguageProvider } from "@/components/language-provider";
@@ -12,13 +13,13 @@ import { getAllowedLanguages } from "@/lib/zitadel";
 import * as Tooltip from "@radix-ui/react-tooltip";
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-import { Lato } from "next/font/google";
+import { Inter_Tight } from "next/font/google";
 import { headers } from "next/headers";
 import React, { Suspense } from "react";
 
-const lato = Lato({
-  weight: ["400", "700", "900"],
+const interTight = Inter_Tight({
   subsets: ["latin"],
+  variable: "--cimbyte-font-sans",
 });
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -43,21 +44,19 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   }
 
   return (
-    <html className={`${lato.className}`} suppressHydrationWarning>
+    <html suppressHydrationWarning>
       <head />
-      <body>
+      <body className={`${interTight.variable} cb`}>
         <ThemeProvider>
           <Tooltip.Provider>
             <Suspense
               fallback={
-                <BackgroundWrapper
-                  className={`bg-background-light-600 dark:bg-background-dark-600 relative flex min-h-screen flex-col justify-center`}
-                >
-                  <div className="relative mx-auto w-full max-w-[440px] py-8">
+                <BackgroundWrapper className="cb-auth-shell">
+                  <div className="cb-auth-wrap">
                     <Skeleton>
                       <div className="h-40"></div>
                     </Skeleton>
-                    <div className="flex flex-row items-center justify-end space-x-4 py-4">
+                    <div className="cb-auth-footer flex flex-row items-center justify-end gap-3">
                       <ThemeSwitch />
                     </div>
                   </div>
@@ -65,12 +64,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
               }
             >
               <LanguageProvider>
-                <BackgroundWrapper
-                  className={`bg-background-light-600 dark:bg-background-dark-600 relative flex min-h-screen flex-col justify-center`}
-                >
-                  <div className="relative mx-auto w-full max-w-[1100px] py-8">
+                <BackgroundWrapper className="cb-auth-shell">
+                  <div className="relative mx-auto w-full max-w-[1100px] px-4 py-8">
                     <div>{children}</div>
-                    <div className="mx-auto flex max-w-[440px] flex-row items-center justify-end space-x-4 px-4 py-4 md:max-w-full md:px-8">
+                    <div className="cb-auth-footer mx-auto flex max-w-[420px] flex-row items-center justify-end gap-3">
                       <LanguageSwitcher languages={languages} />
                       <ThemeSwitch />
                     </div>

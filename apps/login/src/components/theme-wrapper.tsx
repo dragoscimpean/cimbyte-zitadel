@@ -12,7 +12,11 @@ type Props = {
 };
 
 export const ThemeWrapper = ({ children, branding }: Props) => {
-  const { setTheme: setNextTheme } = useTheme();
+  const { resolvedTheme, setTheme: setNextTheme } = useTheme();
+
+  useLayoutEffect(() => {
+    document.documentElement.dataset.cbTheme = resolvedTheme === "light" ? "light" : "dark";
+  }, [resolvedTheme]);
 
   useEffect(() => {
     setTheme(document, branding);
@@ -41,7 +45,7 @@ export const ThemeWrapper = ({ children, branding }: Props) => {
         styleEl.id = STYLE_ID;
         document.head.appendChild(styleEl);
       }
-      // Capture the current font-family (Lato from next/font) before overriding,
+      // Capture the current font-family from next/font before overriding,
       // so it serves as fallback if the custom font fails to load.
       const existingFont = getComputedStyle(document.documentElement).fontFamily || "sans-serif";
       const fontStack = `'ZitadelCustomFont', ${existingFont}`;
@@ -59,7 +63,7 @@ export const ThemeWrapper = ({ children, branding }: Props) => {
       // Inline style overrides the class-based Lato from next/font
       document.documentElement.style.setProperty("font-family", fontStack);
     } else {
-      // No custom font — remove injected style and let Lato class take over
+      // No custom font — remove injected style and let the next/font class take over
       const existing = document.getElementById(STYLE_ID);
       if (existing) {
         existing.remove();

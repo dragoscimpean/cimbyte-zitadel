@@ -1,10 +1,10 @@
 "use client";
 
-import { Logo } from "@/components/logo";
 import { useResponsiveLayout } from "@/lib/theme-hooks";
 import { BrandingSettings } from "@zitadel/proto/zitadel/settings/v2/branding_settings_pb";
 import React, { Children, ReactNode } from "react";
 import { Card } from "./card";
+import { CimbyteBrand } from "./cimbyte-brand";
 import { ThemeWrapper } from "./theme-wrapper";
 
 /**
@@ -49,27 +49,20 @@ export function DynamicTheme({
             const hasLeftRightStructure = childArray.length === 2;
 
             return (
-              <div className="relative mx-auto w-full max-w-[1100px] px-8 py-4">
-                <Card>
-                  <div className="flex min-h-[400px]">
+              <div className="relative mx-auto w-full max-w-[960px] py-4">
+                <Card className="cimbyte-auth-card-flush">
+                  <div className="flex min-h-[400px] overflow-hidden rounded-[var(--cb-radius-xl)] max-md:flex-col">
                     {/* Left side: First child + branding */}
-                    <div className="from-primary-50 to-primary-100 dark:from-primary-900/20 dark:to-primary-800/20 flex w-1/2 flex-col justify-center bg-gradient-to-br p-4 lg:p-8">
+                    <div className="flex w-1/2 flex-col justify-center border-r border-[var(--cb-line)] bg-[var(--cb-bg-2)] p-6 max-md:w-full max-md:border-r-0 max-md:border-b lg:p-8">
                       <div className="mx-auto max-w-[440px] space-y-8">
                         {/* Logo and branding */}
-                        {branding && (
-                          <Logo
-                            lightSrc={branding.lightTheme?.logoUrl}
-                            darkSrc={branding.darkTheme?.logoUrl}
-                            height={150}
-                            width={150}
-                          />
-                        )}
+                        <CimbyteBrand />
 
                         {/* First child content (title, description) - only if we have left/right structure */}
                         {hasLeftRightStructure && (
                           <div className="flex flex-col items-start space-y-4 text-left">
                             {/* Apply larger styling to the content */}
-                            <div className="space-y-6 [&_h1]:text-left [&_h1]:text-4xl [&_h1]:leading-tight [&_h1]:text-gray-900 [&_h1]:lg:text-4xl [&_h1]:dark:text-white [&_p]:text-left [&_p]:leading-relaxed [&_p]:text-gray-700 [&_p]:dark:text-gray-300">
+                            <div className="space-y-6 [&_h1]:text-left [&_h1]:text-4xl [&_h1]:leading-tight [&_p]:text-left [&_p]:leading-relaxed">
                               {leftContent}
                             </div>
                           </div>
@@ -78,7 +71,7 @@ export function DynamicTheme({
                     </div>
 
                     {/* Right side: Second child (form) or single child if old format */}
-                    <div className="flex w-1/2 items-center justify-center p-4 lg:p-8">
+                    <div className="flex w-1/2 items-center justify-center p-6 max-md:w-full lg:p-8">
                       <div className="w-full max-w-[440px]">
                         <div className="space-y-6">{hasLeftRightStructure ? rightContent : leftContent}</div>
                       </div>
@@ -96,20 +89,10 @@ export function DynamicTheme({
             const hasMultipleChildren = childArray.length > 1;
 
             return (
-              <div className="relative mx-auto w-full max-w-[440px] px-4 py-4">
+              <div className="cb-auth-wrap relative mx-auto py-4">
+                <CimbyteBrand />
                 <Card>
                   <div className="mx-auto flex flex-col items-center space-y-8">
-                    <div className="relative flex flex-row items-center justify-center">
-                      {branding && (
-                        <Logo
-                          lightSrc={branding.lightTheme?.logoUrl}
-                          darkSrc={branding.darkTheme?.logoUrl}
-                          height={150}
-                          width={150}
-                        />
-                      )}
-                    </div>
-
                     {hasMultipleChildren ? (
                       <>
                         {/* Title and description - center aligned */}

@@ -77,10 +77,10 @@ export default async function Page(props: { searchParams: Promise<Record<string 
   return (
     <DynamicTheme branding={branding}>
       <div className="flex flex-col space-y-4">
-        <h1>
+        <h1 className="cb-auth-title">
           <Translated i18nKey="title" namespace="accounts" />
         </h1>
-        <p className="ztdl-p">
+        <p className="cb-auth-copy !mb-0">
           <Translated i18nKey="description" namespace="accounts" />
         </p>
       </div>
@@ -88,15 +88,13 @@ export default async function Page(props: { searchParams: Promise<Record<string 
       <div className="w-full">
         <div className="flex w-full flex-col space-y-2">
           <SessionsList sessions={sessions} requestId={requestId} />
-          <Link href={`/loginname?` + params}>
-            <div className="flex flex-row items-center rounded-md px-4 py-3 transition-all hover:bg-black/10 dark:hover:bg-white/10">
-              <div className="mr-4 flex h-8 w-8 flex-row items-center justify-center rounded-full bg-black/5 dark:bg-white/5">
-                <UserPlusIcon className="h-5 w-5" />
-              </div>
-              <span className="text-sm">
-                <Translated i18nKey="addAnother" namespace="accounts" />
-              </span>
+          <Link href={`/loginname?` + params} className="cb-list-row items-center">
+            <div className="cb-avatar">
+              <UserPlusIcon className="h-5 w-5" />
             </div>
+            <span className="cb-list-title">
+              <Translated i18nKey="addAnother" namespace="accounts" />
+            </span>
           </Link>
         </div>
       </div>

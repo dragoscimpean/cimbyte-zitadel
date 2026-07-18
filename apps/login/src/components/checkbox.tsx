@@ -18,7 +18,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
   }, [checked]);
 
   return (
-    <div className="relative flex items-start">
+    <div className="cb-check relative items-start">
       <div className="flex h-5 items-center">
         <div className="box-sizing block">
           <input
@@ -30,10 +30,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
             }}
             disabled={disabled}
             type="checkbox"
-            className={classNames(
-              "form-checkbox text-primary-light-500 dark:text-primary-dark-500 rounded border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200/50 focus:ring-offset-0",
-              className,
-            )}
+            className={classNames("disabled:cursor-not-allowed disabled:opacity-50", className)}
             {...props}
           />
         </div>

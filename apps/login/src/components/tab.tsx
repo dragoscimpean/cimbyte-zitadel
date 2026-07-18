@@ -17,9 +17,9 @@ export const Tab = ({ path, item: { slug, text } }: { path: string; item: Item }
   return (
     <Link
       href={href}
-      className={clsx("mt-2 mr-2 rounded-lg px-3 py-1 text-sm font-medium", {
-        "bg-gray-700 text-gray-100 hover:bg-gray-500 hover:text-white": !isActive,
-        "bg-blue-500 text-white": isActive,
+      className={clsx("cb-btn cb-btn-sm mt-2 mr-2", {
+        "cb-btn-ghost": !isActive,
+        "cb-btn-primary": isActive,
       })}
     >
       {text}

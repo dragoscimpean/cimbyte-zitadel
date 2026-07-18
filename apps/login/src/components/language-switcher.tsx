@@ -2,30 +2,14 @@
 
 import { setLanguageCookie } from "@/lib/cookies";
 import { Lang } from "@/lib/i18n";
-import { APPEARANCE_STYLES, getComponentRoundness, getThemeConfig } from "@/lib/theme";
 import { Listbox, ListboxButton, ListboxOption, ListboxOptions } from "@headlessui/react";
 import { CheckIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
-import clsx from "clsx";
 import { useLocale } from "next-intl";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-// Helper function to get language switcher roundness from theme
-function getLanguageSwitcherRoundness(): string {
-  return getComponentRoundness("button");
-}
-
-// Helper function to get card appearance styles for the language switcher
-function getLanguageSwitcherCardAppearance(): string {
-  const themeConfig = getThemeConfig();
-  const appearance = APPEARANCE_STYLES[themeConfig.appearance];
-  return appearance?.card || "bg-black/5 dark:bg-white/5"; // Fallback to current styling
-}
-
 export function LanguageSwitcher({ languages }: { languages: Lang[] }) {
   const currentLocale = useLocale();
-  const switcherRoundness = getLanguageSwitcherRoundness();
-  const cardAppearance = getLanguageSwitcherCardAppearance();
 
   const [selected, setSelected] = useState(languages.find((l) => l.code === currentLocale) || languages[0]);
 
@@ -43,32 +27,23 @@ export function LanguageSwitcher({ languages }: { languages: Lang[] }) {
   return (
     <div className="w-32">
       <Listbox value={selected} onChange={handleChange}>
-        <ListboxButton
-          className={clsx(
-            `relative block w-full py-1.5 pr-8 pl-3 text-left text-sm/6 text-black dark:text-white ${switcherRoundness}`,
-            cardAppearance,
-            "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25",
-          )}
-        >
+        <ListboxButton className="cb-btn cb-btn-sm relative w-full justify-between pr-8 text-left">
           {selected.name}
           <ChevronDownIcon className="group pointer-events-none absolute top-2.5 right-2.5 size-4" aria-hidden="true" />
         </ListboxButton>
         <ListboxOptions
           anchor="bottom"
           transition
-          className={clsx(
-            `bg-background-light-500 dark:bg-background-dark-500 w-[var(--button-width)] rounded-md border border-black/5 p-1 [--anchor-gap:var(--spacing-1)] focus:outline-none dark:border-white/5`,
-            "transition duration-100 ease-in data-[leave]:data-[closed]:opacity-0",
-          )}
+          className="cb-card z-50 w-[var(--button-width)] p-1 transition duration-100 ease-in [--anchor-gap:var(--spacing-1)] focus:outline-none data-[leave]:data-[closed]:opacity-0"
         >
           {languages.map((lang) => (
             <ListboxOption
               key={lang.code}
               value={lang}
-              className={`group flex cursor-default items-center gap-2 px-3 py-1.5 select-none data-[focus]:bg-black/10 dark:data-[focus]:bg-white/10 ${switcherRoundness}`}
+              className="cb-list-row group cursor-pointer items-center px-2 py-1.5 select-none data-[focus]:bg-[var(--cb-bg-3)]"
             >
               <CheckIcon className="invisible size-4 group-data-[selected]:visible" />
-              <div className="text-sm/6 text-black dark:text-white">{lang.name}</div>
+              <div className="cb-list-title">{lang.name}</div>
             </ListboxOption>
           ))}
         </ListboxOptions>

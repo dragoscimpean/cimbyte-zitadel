@@ -1,3 +1,4 @@
+import { Alert } from "@/components/alert";
 import { DynamicTheme } from "@/components/dynamic-theme";
 import { Translated } from "@/components/translated";
 import { getServiceConfig } from "@/lib/service-url";
@@ -28,7 +29,7 @@ export default async function LinkingFailedPage(props: {
         <p className="ztdl-p text-center">
           <Translated i18nKey="errors.linkingFailed" namespace="idp" />
         </p>
-        {error && <p className="text-sm text-red-600 dark:text-red-400">{error}</p>}
+        {error && <Alert>{error}</Alert>}
       </div>
     </DynamicTheme>
   );
